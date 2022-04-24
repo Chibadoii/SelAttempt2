@@ -16,7 +16,7 @@
         <server.port>4448</server.port>
         <fork.Count>1</fork.Count>
         <suiteXmlFile>src\test\testng.xml</suiteXmlFile>
-        <spmeModule.includes>Testing.T1</spmeModule.includes>
+        <someModule.includes>Testing.SelParamTest</someModule.includes>
 
         <stend.key>stend1</stend.key>
     </properties>
@@ -56,7 +56,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
+            <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -80,7 +80,7 @@
 <!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
 <!--                    </suiteXmlFiles>-->
 <includes>
-    <include>${spmeModule.includes}</include>
+    <include>${someModule.includes}</include>
 </includes>
 
                     <forkCount>${fork.Count}</forkCount>

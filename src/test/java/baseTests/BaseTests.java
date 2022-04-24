@@ -19,29 +19,30 @@ public class BaseTests {
 
     WebDriver driver;
 
-    public String setStendKey = System.setProperty("StendKey","stend1");//При мавене комментируем
+    public String setStendKey = System.setProperty("StendKey","stend1");//При мавене комментируем или при выборе определенного параметра
     public String stendKey = System.getProperty("StendKey");
     public String stendUrl = PropertyLoader.loadProperty(stendKey);
 
     @BeforeTest
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");
-        ChromeOptions op = new ChromeOptions();
+        //System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");//для локалки
+        //ChromeOptions op = new ChromeOptions();
         FirefoxOptions fo = new FirefoxOptions();
 
-//        DesiredCapabilities dc = DesiredCapabilities.chrome(); для локалки
+//        DesiredCapabilities dc = DesiredCapabilities.chrome(); //для локалки
 //        dc.setCapability(ChromeOptions.CAPABILITY, op);
 //        driver = new ChromeDriver();
-            //fo.setCapability("version", "99.0");//Версия браузера для Firefox
-            op.setCapability("version","100.0");//версия браузера Google
+
+            fo.setCapability("version", "98.0");//Версия браузера для Firefox
+            //op.setCapability("version","100.0");//версия браузера Google для докера
         URL hub = null;
         try{
-            hub = new URL("http://localhost:4444/wd/hub");
+            hub = new URL("http://localhost:4444/wd/hub");//45 селеноид, 44 Докер
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        driver = new RemoteWebDriver(hub,op);
-        //driver = new RemoteWebDriver(hub,fo);
+        //driver = new RemoteWebDriver(hub,op);//Google
+        driver = new RemoteWebDriver(hub,fo);//Firefox
     }
     @AfterTest
     public void afterTest(){
