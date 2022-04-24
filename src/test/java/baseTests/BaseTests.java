@@ -5,6 +5,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
@@ -26,18 +27,21 @@ public class BaseTests {
     public void beforeTest() {
         System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");
         ChromeOptions op = new ChromeOptions();
+        FirefoxOptions fo = new FirefoxOptions();
 
 //        DesiredCapabilities dc = DesiredCapabilities.chrome(); для локалки
 //        dc.setCapability(ChromeOptions.CAPABILITY, op);
 //        driver = new ChromeDriver();
-            //op.setCapability("version","chrome");//версия браузера
+            //fo.setCapability("version", "99.0");//Версия браузера для Firefox
+            op.setCapability("version","100.0");//версия браузера Google
         URL hub = null;
         try{
-            hub = new URL("http://localhost:4445/wd/hub");
+            hub = new URL("http://localhost:4444/wd/hub");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         driver = new RemoteWebDriver(hub,op);
+        //driver = new RemoteWebDriver(hub,fo);
     }
     @AfterTest
     public void afterTest(){
