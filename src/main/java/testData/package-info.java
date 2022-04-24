@@ -1,0 +1,4 @@
+/**
+ * для теста
+ */
+package testData;
