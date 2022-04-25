@@ -1,6 +1,10 @@
 package Testing;
 
 import baseTests.BaseTests;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.apache.commons.io.FileUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -24,9 +28,13 @@ public class SelParamTest extends BaseTests {
         };
         return words;
     }
-
+    @Epic("Селениум")
+    @Feature("Гугл тесты")
+    @Story("Проверяем поиск с параметрами")
+    @Description("Слова")
     @Test(dataProvider = "setWords")
     public void startTest(String word, String testName){
+        c.logToReport("ссылка на стенд:"+stendUrl);
         getDriver().get(stendUrl);
         getDriver().manage().window().maximize();
 
@@ -38,11 +46,11 @@ public class SelParamTest extends BaseTests {
         Assertion as = new Assertion();
         as.assertTrue(sr.isImagesTabButtonIsExist());
 
-        File file = new File("./src/main/resources/" + testName +".jpg");
+ /*       File file = new File("./src/main/resources/" + testName +".jpg");
         try{
             FileUtils.writeByteArrayToFile(file, getScreenShot());
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

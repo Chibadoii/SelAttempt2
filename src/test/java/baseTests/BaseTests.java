@@ -1,5 +1,6 @@
 package baseTests;
 
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import pageObj.Common;
 import utils.PropertyLoader;
 
 import java.net.MalformedURLException;
@@ -18,6 +20,8 @@ import java.net.URL;
 public class BaseTests {
 
     WebDriver driver;
+
+    protected Common c = new Common();
 
     public String setStendKey = System.setProperty("StendKey","stend1");//При мавене комментируем или при выборе определенного параметра
     public String stendKey = System.getProperty("StendKey");
@@ -46,6 +50,7 @@ public class BaseTests {
     }
     @AfterTest
     public void afterTest(){
+        getScreenShot();
         driver.quit();
         if(driver !=null){
             driver.quit();
@@ -55,6 +60,7 @@ public class BaseTests {
         return driver;
     }
 
+    @Attachment(value = "Page screenshot", type = "image/png")
     public byte[]getScreenShot(){
         return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
     }
